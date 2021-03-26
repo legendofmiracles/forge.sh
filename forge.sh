@@ -1,6 +1,6 @@
-#!/bin/env sh
+#!/bin/sh
 function versions() {
-  list=$(curl https://files.minecraftforge.net/ -q 2> /dev/null | xmllint --xpath "/html/body/main/div[1]/aside/section//li" --html - 2> /dev/null | /bin/grep "<a href=\"/\|elem-active")
+  list=$(curl https://files.minecraftforge.net/ -q 2> /dev/null | xmllint --xpath "/html/body/main/div[1]/aside/section//li" --html - 2> /dev/null | grep "<a href=\"/\|elem-active")
   versions=""
   while IFS= read -r line; do
     versions="${versions}$(printf "$line" | xmllint --xpath "string(.)" -)\n"
